@@ -34,28 +34,13 @@ $(document).ready(function(){
 <?php
 weather::nightTime(21);
 
-$i = 0;
-foreach($obj->getDat()->DV->Location->Period as $k => $v){
-	$i++;
-echo '
-	<div class="vBlock" id="col'.$i.'">
-		<div class="wrapper">';
-echo '
-			<h3>'.rtrim($v['value'], "Z").'</h3>';
-			$obj->drawImg($v);
-			
-			foreach($v->Rep as $k2 => $v2){
-				if($v2 != 'Night'){			
-echo '
-					<span class="nums">&#9651; '.$v2['Dm'].'</span><img src="media/ico/weather/c.png" ><br />
-					<span class="nums">&#9661; '.$v2['FDm'].'</span><img src="media/ico/weather/c.png" ><br />';
-				}
-			}
-echo '
-		</div>
-	</div>';
-}
 
+try{
+	$obj->printDat();
+}
+catch(Exception $e){
+	echo '<div id="error">Sorry, we could not find any information on this location</div>';
+}
 ?>
 <div id="locSelect">
 	<form action="index.php" method="get">

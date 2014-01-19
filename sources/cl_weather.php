@@ -16,12 +16,12 @@ class weather {
 		return $retValue;
 	}
 
-	public function getDat(){
+	private function getDat(){
 		$sXML = weather::download_page($this->xmlURL . $this->locID . '?res=daily&key=' .$this->apiKey);
 		return new SimpleXMLElement($sXML);
 	}
 	
-	public function drawImg($val){
+	private function drawImg($val){
 		$val = $val->Rep['W'];
 		if($val < 7){false;}
 		elseif($val == 7 || $val == 8){ $val = 'cloud';}
@@ -41,6 +41,30 @@ class weather {
 		echo '<div class="weather_ico"><img src="media/ico/weather/_'.$val.'.png" /></div><br />';
 	}
 
+	public function printDat(){
+		$i = 0;
+		foreach($this->getDat()->DV->Location->Period as $k => $v){
+			$i++;
+		echo '
+			<div class="vBlock" id="col'.$i.'">
+				<div class="wrapper">';
+		echo '
+					<h3>'.rtrim($v['value'], "Z").'</h3>';
+					$this->drawImg($v);
+					
+					foreach($v->Rep as $k2 => $v2){
+						if($v2 != 'Night'){			
+		echo '
+							<span class="nums">&#9651; '.$v2['Dm'].'</span><img src="media/ico/weather/c.png" ><br />
+							<span class="nums">&#9661; '.$v2['FDm'].'</span><img src="media/ico/weather/c.png" ><br />';
+						}
+					}
+		echo '
+				</div>
+			</div>';
+		}
+	}	
+	
 	public static function nightTime($time){
 		echo (date('G', time()) >= $time ? '<div id="night"></div>' : ''); 
 	}
