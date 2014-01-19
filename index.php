@@ -1,7 +1,11 @@
 <?php 
 require('sources/cl_weather.php');
 $obj = new weather;
-$obj->locID = 3772;
+if(isset($_GET['loc'])){
+	$obj->locID = $_GET['loc'];
+} else {
+	$obj->locID = 3772;
+}
 ?>
 <html>
 <head>
@@ -51,7 +55,19 @@ echo '
 		</div>
 	</div>';
 }
-?>
 
+?>
+<div id="locSelect">
+	<form action="index.php" method="get">
+		<select name="loc">
+			<?php
+				foreach($obj->locations()->Location as $k => $v){
+					echo '<option value="'.$v['id'].'">'.$v['name'].'</option>';
+				}
+			?>
+		</select>
+		<input type="submit" value="Go!">
+	</form>
+</div>
 </body>
 </html>

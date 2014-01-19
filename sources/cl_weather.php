@@ -1,10 +1,10 @@
 <?php
 class weather {
-	private $xmlURL = 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/xml/';
+	private $xmlURL = 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/xml/';	
 	private $apiKey = '890b551d-406f-447c-9527-2c235eadcaa1';
 	public $locID;
 	
-	private function download_page($path){
+	private static function download_page($path){
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL,$path);
 		curl_setopt($ch, CURLOPT_FAILONERROR,1);
@@ -17,7 +17,7 @@ class weather {
 	}
 
 	public function getDat(){
-		$sXML = $this->download_page($this->xmlURL . $this->locID . '?res=daily&key=' .$this->apiKey);
+		$sXML = weather::download_page($this->xmlURL . $this->locID . '?res=daily&key=' .$this->apiKey);
 		return new SimpleXMLElement($sXML);
 	}
 	
@@ -44,6 +44,12 @@ class weather {
 	public static function nightTime($time){
 		echo (date('G', time()) >= $time ? '<div id="night"></div>' : ''); 
 	}
+	
+	public function locations(){
+		$sXML = weather::download_page('http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/datatype/sitelist?key=' .$this->apiKey);
+		return new SimpleXMLElement($sXML);
+	}
 }
+
 
 
