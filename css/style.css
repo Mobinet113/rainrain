@@ -1,0 +1,48 @@
+html{
+	font-family: tahoma;
+	background: #2B2B2B;
+	overflow: none;
+	}
+body{
+	margin: 0px;
+}
+.vBlock{
+	height: 100%;
+	width: 20%;
+	float: left;
+	text-align: center;
+	position: relative;
+	z-index: 10;
+}
+/*.wrapper{padding: 20px;}*/
+.vBlock .weather_ico{
+	width: 60px;
+	height:60px;
+	margin: 0 auto;
+}
+
+#night{
+	background: rgba(0,0,20,0.4);
+    pointer-events: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 100;
+}
+.nums, h3{
+	font-size: 40px;
+	color: white;
+	text-shadow:
+    -1px -1px 0 #2B9AB4,
+    1px -1px 0 #2B9AB4,
+    -1px 1px 0 #2B9AB4,
+    1px 1px 0 #2B9AB4;
+}
+h3{
+	font-size: 20px;
+}
+#col5{background: rgb(255,99,71);}
+#col4{background: rgb(255,110,75);}
+#col3{background: rgb(255,121,79);}
+#col2{background: rgb(255,132,83);}
+#col1{background: rgb(255,143,87);}
