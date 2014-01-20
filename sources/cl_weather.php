@@ -41,26 +41,23 @@ class weather {
 		echo '<div class="weather_ico"><img src="media/ico/weather/_'.$val.'.png" /></div><br />';
 	}
 
-	public function printDat(){
+	public function printDat($start = null){
 		$i = 0;
 		foreach($this->getDat()->DV->Location->Period as $k => $v){
 			$i++;
 		echo '
-			<div class="vBlock" id="col'.$i.'">
+			<div class="vBlock"id="col'.$i.'" style="top:-'.$start.';">
 				<div class="wrapper">';
-		echo '
-					<h3>'.rtrim($v['value'], "Z").'</h3>';
+		echo '		<h3>'.rtrim($v['value'], "Z").'</h3>';
 					$this->drawImg($v);
 					
 					foreach($v->Rep as $k2 => $v2){
 						if($v2 != 'Night'){			
-		echo '
-							<span class="nums">&#9651; '.$v2['Dm'].'</span><img src="media/ico/weather/c.png" ><br />
+		echo '				<span class="nums">&#9651; '.$v2['Dm'].'</span><img src="media/ico/weather/c.png" ><br />
 							<span class="nums">&#9661; '.$v2['FDm'].'</span><img src="media/ico/weather/c.png" ><br />';
 						}
 					}
-		echo '
-				</div>
+		echo '	</div>
 			</div>';
 		}
 	}	
