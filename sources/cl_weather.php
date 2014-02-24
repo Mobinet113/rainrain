@@ -45,17 +45,23 @@ class weather {
 		$i = 0;
 		foreach($this->getDat()->DV->Location->Period as $k => $v){
 			$i++;
+			if($i == 1){$date = 'Today';}
+			elseif($i == 2){$date = 'Tomorrow';}
+			else{
+				$date = new DateTime(rtrim($v['value'], "Z"));
+				$date = $date->format('l');
+			}
 		echo '
 			<div class="vBlock"id="col'.$i.'" style="top:-'.$start.';">
 				<div class="wrapper">';
-		echo '		<h3>'.rtrim($v['value'], "Z").'</h3>';
+		echo '		<h3>'.$date.'</h3>';
 					$this->drawImg($v);
 					
-					foreach($v->Rep as $k2 => $v2){
-						if($v2 != 'Night'){			
-		echo '				<span class="nums">&#9651; '.$v2['Dm'].'</span><img src="media/ico/weather/c.png" ><br />
-							<span class="nums">&#9661; '.$v2['FDm'].'</span><img src="media/ico/weather/c.png" ><br />';
-						}
+					foreach($v->Rep as $k2 => $v2){						
+		echo '				<div class="tempGroup">';
+								if($v2 == 'Day'){echo '<div class="temp"><span class="nums">&#9651; '.$v2['Dm'].'</span><img src="media/ico/weather/c.png" ></div>';}
+								if($v2 == 'Night'){echo '<div class="temp"><span class="nums">&#9661; '.$v2['Nm'].'</span><img src="media/ico/weather/c.png" ></div>';}
+		echo'				</div>';					
 					}
 		echo '	</div>
 			</div>';
@@ -68,7 +74,21 @@ class weather {
 	
 	public function locations(){
 		$sXML = weather::download_page('http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/datatype/sitelist?key=' .$this->apiKey);
-		return new SimpleXMLElement($sXML);
+		$XML = new SimpleXMLElement($sXML);
+	
+		foreach($XML->Location as $k => $v){
+			$area[] = $v['unitaryAuthArea'];
+		}	
+		$area = array_unique($area);
+		sort($area, SORT_STRING);
+		for($i = 0; $i < count($area); $i++){
+			echo '<optgroup label="'.$area[$i].'">';
+				$search = $XML->xpath("//Location[@unitaryAuthArea='$area[$i]']"); //XPath Search
+				foreach($search as $v){
+					echo '<option value="'.$v['id'].'">'.$v['name'].'</option>';
+				}
+			echo '</optgroup>';
+		}
 	}
 }
 

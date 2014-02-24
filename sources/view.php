@@ -1,10 +1,11 @@
 <?php
+setcookie("location", $_POST['locID'], strtotime( '+320 days' ));
 require('cl_weather.php');
 
 $height = $_POST['height'];
 $obj = new weather;
-$obj->locID = $_POST['locID'];
 
+$obj->locID = $_POST['locID'];
 try{
 	$obj->printDat($height);
 }

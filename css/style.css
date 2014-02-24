@@ -39,6 +39,9 @@ body{
     -1px 1px 0 #2B9AB4,
     1px 1px 0 #2B9AB4;
 }
+.nums{
+	clear: both;
+}
 h3{
 	font-size: 20px;
 }
@@ -82,3 +85,39 @@ h3{
 	background: #545454;
 	color: white;
 }	
+@media only screen and (max-width: 640px) {
+	.vBlock{
+		width: 100%;
+		height: 150px;
+	}
+	.vBlock .weather_ico{
+		float: left;
+	}
+	.temp{
+		float: right;
+	}
+	.tempGroup{
+		margin: 0 auto;
+		width: 234px;
+		text-align: center;
+	}
+	#locSelect{
+		width: 100%;
+		position: relative;
+		background: none;
+		z-index: 10;
+		float: left;
+		text-align: center;
+		padding: 20px 0 20px 0;
+	}
+	#selLoc{
+		width: 90%;
+		margin-bottom: 10px;
+	}
+	#subLoc{
+		padding: 0px 30% 0px 30%;
+	}
+	body{
+		overflow-y: scroll;
+	}
+}
