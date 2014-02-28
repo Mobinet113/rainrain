@@ -9,7 +9,7 @@ if(isset($_POST['AjaxAction'])){
 
 class weather {
 	private $xmlURL = 'http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/xml/';	
-	private $apiKey = '890b551d-406f-447c-9527-2c235eadcaa1';
+	private $apiKey = '<API KEY>';
 	public $locID;
 	
 	private static function download_page($path){
