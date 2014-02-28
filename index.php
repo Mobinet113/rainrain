@@ -6,7 +6,7 @@ if(isset($_COOKIE['location'])){
 } else {
 	$obj->locID = 3772;
 }
-weather::nightTime(21);
+//weather::nightTime(21);
 ?>
 <html>
 <head>
