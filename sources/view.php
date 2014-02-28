@@ -1,5 +1,5 @@
 <?php
-setcookie("location", $_POST['locID'], strtotime( '+320 days' ));
+setcookie("location", $_POST['locID'], strtotime( '+320 days' ), '/');
 require('cl_weather.php');
 
 $height = $_POST['height'];

@@ -39,9 +39,7 @@ body{
     -1px 1px 0 #2B9AB4,
     1px 1px 0 #2B9AB4;
 }
-.nums{
-	clear: both;
-}
+
 h3{
 	font-size: 20px;
 }
@@ -50,6 +48,10 @@ h3{
 #col3{background: rgb(255,121,79);}
 #col2{background: rgb(255,132,83);}
 #col1{background: rgb(255,143,87);}
+
+#selLoc, #selArea{
+	width: 80%;
+}
 
 #locSelect{
 	position: absolute;
@@ -84,7 +86,60 @@ h3{
 #subLoc:hover{
 	background: #545454;
 	color: white;
-}	
+}
+
+.wind{
+	width: 50px;
+	height: 37px;
+	overflow: hidden;
+	text-align: center;
+	padding-top: 13px;
+	margin: 0 auto;
+}
+.wind span{
+	position: relative;
+	z-index: 100;
+}
+.windBG{
+	width: 50px;
+	height: 50px;
+	background: url('../media/ico/wind.png');
+	background-size: 50px 50px;
+	position: relative;
+	z-index: 99;
+	margin-top: -35px;
+}
+#spread{
+	width: 100%;
+	text-align: center;
+	font-size: 200px;
+	opacity: 0.2;
+	position: fixed;
+	z-index: 120;
+	margin-top: 400px;
+	float: left;
+	 pointer-events:none;
+	 background:none !important;
+	height: 100px;
+	overflow: none;
+}
+.windBG.N{transform: rotate(315deg); -webkit-transform: rotate(315deg);}
+.windBG.NNE{transform: rotate(330deg); -webkit-transform: rotate(330deg);}
+.windBG.NE{transform: rotate(350deg); -webkit-transform: rotate(350deg);}
+.windBG.ENE{transform: rotate(365deg); -webkit-transform: rotate(365deg);}
+.windBG.E{transform: rotate(40deg); -webkit-transform: rotate(40deg);}
+.windBG.ESE{transform: rotate(60deg); -webkit-transform: rotate(60deg);}
+.windBG.SE{transform: rotate(80deg); -webkit-transform: rotate(80deg);}
+.windBG.SSE{transform: rotate(110deg); -webkit-transform: rotate(110deg);}
+.windBG.S{transform: rotate(135deg); -webkit-transform: rotate(135deg);}
+.windBG.SSW{transform: rotate(160deg); -webkit-transform: rotate(160deg);}
+.windBG.SW{transform: rotate(180deg); -webkit-transform: rotate(180deg);}
+.windBG.WSW{transform: rotate(200deg); -webkit-transform: rotate(200deg);}
+.windBG.W{transform: rotate(225deg); -webkit-transform: rotate(225deg);}
+.windBG.WNW{transform: rotate(240deg); -webkit-transform: rotate(240deg);}
+.windBG.NW{transform: rotate(255deg); -webkit-transform: rotate(255deg);}
+.windBG.NNW{transform: rotate(280deg); -webkit-transform: rotate(280deg);}
+
 @media only screen and (max-width: 640px) {
 	.vBlock{
 		width: 100%;
@@ -97,8 +152,7 @@ h3{
 		float: right;
 	}
 	.tempGroup{
-		margin: 0 auto;
-		width: 234px;
+		margin: 0 10px;
 		text-align: center;
 	}
 	#locSelect{
@@ -110,7 +164,7 @@ h3{
 		text-align: center;
 		padding: 20px 0 20px 0;
 	}
-	#selLoc{
+	#selLoc, #selArea{
 		width: 90%;
 		margin-bottom: 10px;
 	}
@@ -119,5 +173,19 @@ h3{
 	}
 	body{
 		overflow-y: scroll;
+	}
+	.wind{
+		margin: -80px 10px;
+	}
+	#spread{
+		width: 100%;
+		font-size: 40px;
+		top: -350px;
+	}
+
+}
+@media only screen and (max-width: 370px) {
+	.nums, h3{
+		font-size: 20px;
 	}
 }
